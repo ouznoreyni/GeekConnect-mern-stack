@@ -6,6 +6,9 @@ dbConnect();
 
 const app = express();
 
+//init Middleware
+app.use(express.json());
+
 //define routes
 app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/users', require('./routes/api/users'))
