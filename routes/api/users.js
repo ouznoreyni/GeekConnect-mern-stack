@@ -58,7 +58,6 @@ router.post('/',
                  if(error) throw error;
                  res.json({token})
              })
-        res.send('users registered')
         } catch (error) {
             console.error(error.message);
             res.status(500).send('Erreur Interne')
