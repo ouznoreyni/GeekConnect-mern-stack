@@ -1,4 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://ouz:ouznoreyni@devconnector.dptjl.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret":"secretjwt"
+  "mongoURI": "mongodb+srv://ouz:ouznoreyni@devconnector.dptjl.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "secretjwt"
 }
