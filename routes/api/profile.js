@@ -110,4 +110,40 @@ router.post(
   }
 );
 
+/*
+ *@Route GET api/profile
+ *@description get all profiles
+ *@access private
+ */
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    res.json(profiles);
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).send('Erreur Interne ');
+  }
+});
+
+/*
+ *@Route GET api/profile/user/:user_id
+ *@description get profile by user ID
+ *@access Public
+ */
+router.get('/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate('user', ['name', 'avatar']);
+    if (!profile)
+      return res.status(400).json({ msg: "le profile n'existe pas" });
+    res.json(profile);
+  } catch (error) {
+    if (error.kind == 'ObjectId') {
+      return res.status(400).json({ msg: "le profile n'existe pas" });
+    }
+    console.error(error.message);
+    return res.status(500).send('Erreur Interne ');
+  }
+});
 module.exports = router;
