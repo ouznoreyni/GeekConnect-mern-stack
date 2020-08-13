@@ -146,4 +146,31 @@ router.get('/:user_id', async (req, res) => {
     return res.status(500).send('Erreur Interne ');
   }
 });
+
+/*
+ *@Route DELETE api/profile
+ *@description Delete profile, user and posts
+ *@access private
+ */
+router.get('/', async (req, res) => {
+  try {
+    //remove users posts
+
+    //remove profile
+    await Profile.findOneAndRemove({
+      user: req.user.id,
+    });
+
+    //remove user
+    await User.findOneAndRemove({
+      _id: req.user.id,
+    });
+
+    res.json({ msg: 'User supprimer' });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).send('Erreur Interne ');
+  }
+});
+
 module.exports = router;
