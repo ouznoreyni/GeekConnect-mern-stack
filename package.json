@@ -4,7 +4,10 @@
   "description": "Social network for developpers",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "server": "nodemon server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Ouz Noreyni",
   "license": "MIT",
