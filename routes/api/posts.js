@@ -27,7 +27,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
       });
 
       const post = await newPost.save();
@@ -37,7 +37,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route    GET api/posts
@@ -61,7 +61,7 @@ router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ msg: 'Post n existe pas' })
+      return res.status(404).json({ msg: 'Post n existe pas' });
     }
 
     res.json(post);
@@ -106,7 +106,7 @@ router.put('/like/:id', [auth, checkObjectId('id')], async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     // Check if the post has already been liked
-    if (post.likes.some(like => like.user.toString() === req.user.id)) {
+    if (post.likes.some((like) => like.user.toString() === req.user.id)) {
       return res.status(400).json({ msg: 'Post deja aime' });
     }
 
@@ -117,7 +117,7 @@ router.put('/like/:id', [auth, checkObjectId('id')], async (req, res) => {
     return res.json(post.likes);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Erreur Interne);
+    res.status(500).send('Erreur Interne');
   }
 });
 
@@ -129,13 +129,13 @@ router.put('/unlike/:id', [auth, checkObjectId('id')], async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     // Check if the post has not yet been liked
-    if (!post.likes.some(like => like.user.toString() === req.user.id)) {
+    if (!post.likes.some((like) => like.user.toString() === req.user.id)) {
       return res.status(400).json({ msg: 'Post n a pas encore ete aime' });
     }
 
     // remove the like
     post.likes = post.likes.filter(
-      ({ user }) => user.toString() !== req.user.id
+      ({ user }) => user.toString() !== req.user.id,
     );
 
     await post.save();
@@ -155,7 +155,7 @@ router.post(
   [
     auth,
     checkObjectId('id'),
-    [check('text', 'Text est obligatoire').not().isEmpty()]
+    [check('text', 'Text est obligatoire').not().isEmpty()],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -171,7 +171,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
       };
 
       post.comments.unshift(newComment);
@@ -183,7 +183,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Erreur Interne');
     }
-  }
+  },
 );
 
 // @route    DELETE api/posts/comment/:id/:comment_id
@@ -195,7 +195,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // Pull out comment
     const comment = post.comments.find(
-      comment => comment.id === req.params.comment_id
+      (comment) => comment.id === req.params.comment_id,
     );
     // Make sure comment exists
     if (!comment) {
@@ -207,7 +207,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     }
 
     post.comments = post.comments.filter(
-      ({ id }) => id !== req.params.comment_id
+      ({ id }) => id !== req.params.comment_id,
     );
 
     await post.save();

@@ -4,8 +4,7 @@
   "description": "Social network for developpers",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server":"nodemon server"
+    "start": "nodemon server"
   },
   "author": "Ouz Noreyni",
   "license": "MIT",

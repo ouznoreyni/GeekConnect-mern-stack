@@ -41,7 +41,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
       //check if user exists
@@ -71,13 +71,13 @@ router.post(
         (error, token) => {
           if (error) throw error;
           res.json({ token });
-        }
+        },
       );
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Erreur Interne');
     }
-  }
+  },
 );
 
 module.exports = router;
