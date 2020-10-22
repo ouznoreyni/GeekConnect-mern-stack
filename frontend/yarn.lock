@@ -6386,6 +6386,11 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+jwt-decode@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.0.0.tgz#d9a17ddf6d37c03bf037b0b27cf8756cfd01c5c7"
+  integrity sha512-RBQv2MTm3FNKQkdzhEyQwh5MbdNgMa+FyIJIK5RMWEn6hRgRHr7j55cRxGhRe6vGJDElyi6f6u/yfkP7AoXddA==
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -10486,6 +10491,11 @@ uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
+  integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"

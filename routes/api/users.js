@@ -14,12 +14,12 @@ const User = require('../../models/User');
 router.post(
   '/',
   [
-    check('name', 'le nom est obligatoire').not().isEmpty(),
-    check('email', 'Entrer une adresse email valide').isEmail(),
-    check(
-      'password',
-      'le mot de passe doit contenir minimum 6 caracteres'
-    ).isLength({ min: 6 }),
+    check('name', 'Entrer un nom valide').not().isEmpty().isLength({ min: 5 }),
+    check('email', 'Entrer une adresse email valide').not().isEmpty().isEmail(),
+    check('password', 'Entrer un mot de passe valide')
+      .not()
+      .isEmpty()
+      .isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -27,12 +27,13 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const { name, email, password } = req.body;
-
     try {
       //check if user exists
       let user = await User.findOne({ email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: "L'utilisateur existe." }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "L'utilisateur existe." }] });
       }
       //get users gravatar from email
       const avatar = gravatar.url({ email, s: '200', r: 'pg', d: 'mm' });
@@ -64,14 +65,13 @@ router.post(
         { expiresIn: 360000 },
         (error, token) => {
           if (error) throw error;
-          res.json({ token });
-        }
+          return res.json({ token });
+        },
       );
     } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Erreur Interne');
+      return res.status(500).send('Erreur Interne');
     }
-  }
+  },
 );
 
 module.exports = router;

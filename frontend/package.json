@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "jwt-decode": "^3.0.0",
     "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -16,7 +17,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
